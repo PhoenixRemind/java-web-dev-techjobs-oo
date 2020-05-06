@@ -5,7 +5,6 @@ public class Job {
 
     private int id;
     private static int nextId = 1;
-
     private String name;
     private Employer employer;
     private Location location;
@@ -45,27 +44,54 @@ public class Job {
     public int hashCode() {
         return Objects.hash(id);
     }
-
+    /***
+     *I liked the look of the previous block of code here because I thought I was being fancy, but could not find
+     *a way to update the appropriate field when the data was not available. It would only ever allow me to use
+     *name without throwing errors. Just resulted in an old if statement block that works.
+    ***/
     @Override
     public String toString() {
-        if(id == 0){name="Data not available";}
-        if(name.equals("")){name="Data not available";}
-        if(employer.equals("")){name="Data not available";}
-        if(location.equals("")){name="Data not available";}
-        if(positionType.equals("")){name="Data not available";}
-        if(coreCompetency.equals("")){name="Data not available";}
-        return "\n" +
-                "ID: " + id + "\n" +
-                "Name: " + name + "\n" +
-                "Employer: " + employer + "\n" +
-                "Location: " + location + "\n" +
-                "Position Type: " + positionType + "\n" +
-                "Core Competency: " + coreCompetency + "\n";
+        String str= "\nID: " + this.id;;
+
+        if (this.name == null && this.employer == null && this.location == null && this.positionType == null && this.coreCompetency == null) {
+            return str = "OOPS! This job does not seem to exist.";
+        }
+
+        if (this.name == "") {
+            str = str + "\nName: " + "Data not available" ;
+        } else {
+            str = str + "\nName: " + this.name ;
+        }
+
+        if (this.employer.getValue() == "") {
+            str = str + "\nEmployer: " + "Data not available" ;
+        } else {
+            str = str + "\nEmployer: " + this.employer ;
+        }
+
+        if (this.location.getValue() == "") {
+            str = str + "\nLocation: " + "Data not available" ;
+        } else {
+            str = str + "\nLocation: " + this.location ;
+        }
+
+        if (this.positionType.getValue() == "") {
+            str = str + "\nPosition Type: " + "Data not available" ;
+        } else {
+            str = str + "\nPosition Type: " + this.positionType ;
+        }
+
+        if (this.coreCompetency.getValue() == "") {
+            str = str + "\nCore Competency: " + "Data not available\n" ;
+        } else {
+            str = str + "\nCore Competency: " + this.coreCompetency + "\n" ;
+        }
+
+        return str;
     }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
-
     public int getId() {
         return id;
     }
@@ -109,5 +135,4 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
-
 }
