@@ -12,6 +12,7 @@ public class JobTest {
 
     Job testJob;
     Job otherTestJob;
+    Job testJobStuff;
 
 
 
@@ -20,6 +21,16 @@ public class JobTest {
     public void testSettingJobId(){
         assertNotEquals(testJob.getId(), otherTestJob.getId());
         assertTrue(testJob.getId()+1 == otherTestJob.getId() || testJob.getId()-1 == otherTestJob.getId());
+    }
+
+    @Test
+    public void testJobConstructorSetsAllFields(){
+        testJobStuff = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals("Product tester", testJobStuff.getName());
+        assertEquals("ACME", testJobStuff.getEmployer().getValue());
+        assertEquals("Desert", testJobStuff.getLocation().getValue());
+        assertEquals("Quality Control", testJobStuff.getPositionType().getValue());
+        assertEquals("Persistence", testJobStuff.getCoreCompetency().getValue());
     }
 
 }
