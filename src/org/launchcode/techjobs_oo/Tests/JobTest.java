@@ -19,6 +19,8 @@ public class JobTest {
     @Before
     @Test
     public void testSettingJobId(){
+        testJob = new Job();
+        otherTestJob = new Job();
         assertNotEquals(testJob.getId(), otherTestJob.getId());
         assertTrue(testJob.getId()+1 == otherTestJob.getId() || testJob.getId()-1 == otherTestJob.getId());
     }
@@ -31,6 +33,10 @@ public class JobTest {
         assertEquals("Desert", testJobStuff.getLocation().getValue());
         assertEquals("Quality Control", testJobStuff.getPositionType().getValue());
         assertEquals("Persistence", testJobStuff.getCoreCompetency().getValue());
+        assertTrue(testJobStuff.getEmployer() instanceof Employer);
+        assertTrue(testJobStuff.getLocation() instanceof Location);
+        assertTrue(testJobStuff.getPositionType() instanceof PositionType);
+        assertTrue(testJobStuff.getCoreCompetency() instanceof CoreCompetency);
     }
 
 }
