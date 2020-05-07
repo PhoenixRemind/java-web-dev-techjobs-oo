@@ -75,3 +75,8 @@ public class JobTest {
     }
 
 }
+/**
+ *I don't know if I did the testing right, this is the portion I feel least confident about this assignment.
+ * I believe I got the desired results, even though I added those "*****" in the printout
+ **/
+

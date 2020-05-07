@@ -47,47 +47,29 @@ public class Job {
     /***
      *I liked the look of the previous block of code here because I thought I was being fancy, but could not find
      *a way to update the appropriate field when the data was not available. It would only ever allow me to use
-     *name without throwing errors. Just resulted in an old if statement block that works.
+     *name without throwing errors. Just resulted in an old if statement block that works after several revisions,
+     * this one I am leaving is the most recent committed. My first attempt seemed like it would have failed
+     * and it definitely did when it came to inputting "Data not available" on job3 printout. This is my 4th iteration
+     * and I think I am content with it.
     ***/
     @Override
     public String toString() {
-        String str= "\nID: " + this.id;;
 
         if (this.name == null && this.employer == null && this.location == null && this.positionType == null && this.coreCompetency == null) {
-            return str = "OOPS! This job does not seem to exist.";
+            return "OOPS! This job does not seem to exist.";
         }
+        if(getName() == "") { setName("Data not available");}
+        if(employer.getValue() == "") {setEmployer(new Employer("Data not available"));}
+        if(location.getValue() == "") {setLocation(new Location("Data not available"));}
+        if(positionType.getValue() == "") {setPositionType(new PositionType("Data not available"));}
+        if(coreCompetency.getValue() == "") {setCoreCompetency(new CoreCompetency("Data not available"));}
 
-        if (this.name == "") {
-            str = str + "\nName: " + "Data not available" ;
-        } else {
-            str = str + "\nName: " + this.name ;
-        }
-
-        if (this.employer.getValue() == "") {
-            str = str + "\nEmployer: " + "Data not available" ;
-        } else {
-            str = str + "\nEmployer: " + this.employer ;
-        }
-
-        if (this.location.getValue() == "") {
-            str = str + "\nLocation: " + "Data not available" ;
-        } else {
-            str = str + "\nLocation: " + this.location ;
-        }
-
-        if (this.positionType.getValue() == "") {
-            str = str + "\nPosition Type: " + "Data not available" ;
-        } else {
-            str = str + "\nPosition Type: " + this.positionType ;
-        }
-
-        if (this.coreCompetency.getValue() == "") {
-            str = str + "\nCore Competency: " + "Data not available\n" ;
-        } else {
-            str = str + "\nCore Competency: " + this.coreCompetency + "\n" ;
-        }
-
-        return str;
+        return ("*****\nID: " + this.getId() + "\n"
+                + "Name: " + this.getName() + "\n"
+                + "Employer: " + this.getEmployer() + "\n"
+                + "Location: " + this.getLocation() + "\n"
+                + "Position Type: " + this.getPositionType() + "\n"
+                + "Core Competency: " + this.getCoreCompetency() + "\n*****\n");
     }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
